@@ -1,6 +1,4 @@
-package com.example.dev.springbootdev.model;
-
-import org.hibernate.annotations.GeneratorType;
+package com.example.dev.springbootdev.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

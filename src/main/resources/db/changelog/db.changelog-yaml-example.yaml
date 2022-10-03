@@ -17,15 +17,68 @@ databaseChangeLog:
                     primaryKey: true
                     primaryKeyName: book_pkey
                   name: id
-                  type: BIGINT
+                  type: bigint
               - column:
                   constraints:
                     nullable: false
                   name: book_name
-                  type: VARCHAR(250)
+                  type: varchar(250)
               - column:
                   constraints:
                     nullable: false
                   name: author_name
-                  type: VARCHAR(250)
+                  type: varchar(250)
             tableName: book
+
+
+  - changeSet:
+      id: 2
+      author: shakib
+      changes:
+        - addColumn:
+            tableName: book
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: genre
+                  type: varchar(250)
+
+  - changeSet:
+      id: 3
+      author: shakib
+      changes:
+        - addColumn:
+            tableName: book
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: price
+                  type: double
+              - column:
+                  constraints:
+                    nullable: false
+                  name: page_count
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: description
+                  type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: published_date
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+

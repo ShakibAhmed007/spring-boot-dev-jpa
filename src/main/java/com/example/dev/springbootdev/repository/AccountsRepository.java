@@ -1,8 +1,7 @@
 package com.example.dev.springbootdev.repository;
 
-import com.example.dev.springbootdev.model.Accounts;
+import com.example.dev.springbootdev.entities.Accounts;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 

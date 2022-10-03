@@ -1,6 +1,6 @@
 package com.example.dev.springbootdev.service;
 
-import com.example.dev.springbootdev.model.Accounts;
+import com.example.dev.springbootdev.entities.Accounts;
 import com.example.dev.springbootdev.repository.AccountsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
