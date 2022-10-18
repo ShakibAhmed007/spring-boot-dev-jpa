@@ -47,6 +47,11 @@ databaseChangeLog:
                 - column:
                     constraints:
                       nullable: false
+                    name: status_id
+                    type: int
+                - column:
+                    constraints:
+                      nullable: false
                     name: created_on
                     type: timestamp
                 - column:
@@ -128,6 +133,11 @@ databaseChangeLog:
                     nullable: false
                   name: description
                   type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status_id
+                  type: int
               - column:
                   constraints:
                     nullable: false
