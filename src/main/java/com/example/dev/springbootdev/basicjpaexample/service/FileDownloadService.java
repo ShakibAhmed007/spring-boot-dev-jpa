@@ -1,10 +1,6 @@
-package com.example.dev.springbootdev.service;
+package com.example.dev.springbootdev.basicjpaexample.controller.service;
 
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedInputStream;

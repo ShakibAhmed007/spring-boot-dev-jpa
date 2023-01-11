@@ -1,4 +1,4 @@
-package com.example.dev.springbootdev.entities;
+package com.example.dev.springbootdev.basicjpaexample.controller.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

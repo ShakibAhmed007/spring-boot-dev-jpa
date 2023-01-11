@@ -1,6 +1,6 @@
-package com.example.dev.springbootdev.controller;
+package com.example.dev.springbootdev.basicjpaexample.controller;
 
-import com.example.dev.springbootdev.service.FileDownloadService;
+import com.example.dev.springbootdev.basicjpaexample.controller.service.FileDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ContentDisposition;

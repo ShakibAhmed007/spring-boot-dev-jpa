@@ -1,6 +1,6 @@
-package com.example.dev.springbootdev.repository;
+package com.example.dev.springbootdev.basicjpaexample.controller.repository;
 
-import com.example.dev.springbootdev.entities.Accounts;
+import com.example.dev.springbootdev.basicjpaexample.controller.entities.Accounts;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
