@@ -1,7 +1,8 @@
-package com.example.dev.springbootdev.basicjpaexample.controller.service;
+package com.example.dev.springbootdev.basicjpaexample.service;
 
-import com.example.dev.springbootdev.basicjpaexample.controller.entities.Accounts;
-import com.example.dev.springbootdev.basicjpaexample.controller.repository.QueryAnnotationRepository;
+
+import com.example.dev.springbootdev.basicjpaexample.repository.QueryAnnotationRepository;
+import com.example.dev.springbootdev.entities.Accounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

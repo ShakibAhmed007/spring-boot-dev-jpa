@@ -1,7 +1,8 @@
-package com.example.dev.springbootdev.basicjpaexample.controller.service;
+package com.example.dev.springbootdev.basicjpaexample.service;
 
-import com.example.dev.springbootdev.basicjpaexample.controller.entities.Accounts;
-import com.example.dev.springbootdev.basicjpaexample.controller.repository.AccountsRepository;
+
+import com.example.dev.springbootdev.basicjpaexample.repository.AccountsRepository;
+import com.example.dev.springbootdev.entities.Accounts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

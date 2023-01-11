@@ -154,3 +154,47 @@ databaseChangeLog:
                   name: updated_on
                   type: timestamp
 
+  - changeSet:
+      id: 5
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: student
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: student_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: firstname
+                  type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: lastname
+                  type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: email
+                  type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: age
+                  type: int
+            tableName: student
+
