@@ -3,10 +3,9 @@ package com.example.dev.springbootdev.jpqlexample.controller;
 import com.example.dev.springbootdev.entities.Student;
 import com.example.dev.springbootdev.jpqlexample.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,6 +18,11 @@ public class StudentController {
     @GetMapping("/getAll")
     public List<Student> getAll(){
         return studentService.getAll();
+    }
+
+    @PostMapping("/save")
+    public Student save(@Valid @RequestBody Student student){
+        return studentService.save(student);
     }
 
 

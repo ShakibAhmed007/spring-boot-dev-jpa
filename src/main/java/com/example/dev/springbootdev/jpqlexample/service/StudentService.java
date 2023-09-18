@@ -13,6 +13,10 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
     public List<Student> getAll() {
-        return studentRepository.findAll();
+        return studentRepository.findAllStudent();
+    }
+
+    public Student save(Student student) {
+        return studentRepository.save(student);
     }
 }
