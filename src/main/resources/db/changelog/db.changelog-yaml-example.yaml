@@ -198,3 +198,112 @@ databaseChangeLog:
                   type: int
             tableName: student
 
+  - changeSet:
+      id: 6
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: user
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: user_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: name
+                  type: varchar(250)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+
+  - changeSet:
+      id: 7
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: passport
+      changes:
+        - createTable:
+            tableName: passport
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: passport_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: true
+                  name: number
+                  type: varchar(30)
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+            constraints:
+              primaryKey: true
+              uniqueConstraintName: UK_user_id
+
+  - changeSet:
+      id: 8
+      author: shakib
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: passport
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: FK_passport_user
+            foreignKeyConstraintName: FK_passport_user
+            onDelete: CASCADE
+            onUpdate: CASCADE
+
+
+
+
