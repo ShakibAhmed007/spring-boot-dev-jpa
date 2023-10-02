@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PassportRepository extends JpaRepository<Passport, Long> {
+
+    public Passport findByUserId(Long userId);
 }

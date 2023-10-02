@@ -1,5 +1,7 @@
 package com.example.dev.springbootdev.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,7 +39,19 @@ public class Passport {
     @NotNull
     private LocalDateTime updatedOn;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdOn = LocalDateTime.now();
+        this.updatedOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedOn = LocalDateTime.now();
+    }
 }
