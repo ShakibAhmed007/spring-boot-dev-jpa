@@ -1,6 +1,5 @@
 package com.example.dev.springbootdev.onetoone.dto;
 
-import com.example.dev.springbootdev.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,8 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PassportDetailsDto {
+public class UserDto {
+
     private Long id;
-    private String number;
-    private User user;
+    private String name;
+    private Integer status;
+
+
 }

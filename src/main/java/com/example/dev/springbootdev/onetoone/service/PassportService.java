@@ -2,6 +2,7 @@ package com.example.dev.springbootdev.onetoone.service;
 
 import com.example.dev.springbootdev.entities.Passport;
 import com.example.dev.springbootdev.entities.User;
+import com.example.dev.springbootdev.exception.CustomException;
 import com.example.dev.springbootdev.onetoone.dto.PassportDetailsDto;
 import com.example.dev.springbootdev.onetoone.dto.PassportDto;
 import com.example.dev.springbootdev.onetoone.repository.PassportRepository;
@@ -32,7 +33,6 @@ public class PassportService {
     public Passport save(PassportDto passportDto) {
         User user = userRepository.findById(passportDto.getUserId())
                 .orElseThrow(() -> new EntityNotFoundException("User not found with "+ passportDto.getUserId()));
-
         Passport passport = new Passport();
         passport.setId(passportDto.getId());
         passport.setNumber(passportDto.getNumber());
@@ -53,7 +53,7 @@ public class PassportService {
             passport.setStatus(passportDto.getStatus());
             return passportRepository.save(passport);
         } else {
-            throw new EntityNotFoundException("Passport not found with ID: " + passportDto.getId());
+            throw new CustomException(404, "Passport not found with ID: " + passportDto.getId());
         }
     }
 
@@ -67,16 +67,20 @@ public class PassportService {
             passportDetailsDto.setUser(passport.getUser());
             return passportDetailsDto;
         } else {
-            throw new EntityNotFoundException("Passport not found with ID: " + id);
+            throw new CustomException(404, "Passport not found with ID: " + id);
         }
     }
 
     public PassportDetailsDto getByUserId(Long id) {
         Passport passport = passportRepository.findByUserId(id);
-        PassportDetailsDto passportDetailsDto = new PassportDetailsDto();
-        passportDetailsDto.setId(passport.getId());
-        passportDetailsDto.setNumber(passport.getNumber());
-        passportDetailsDto.setUser(passport.getUser());
-        return passportDetailsDto;
+        if(passport != null){
+            PassportDetailsDto passportDetailsDto = new PassportDetailsDto();
+            passportDetailsDto.setId(passport.getId());
+            passportDetailsDto.setNumber(passport.getNumber());
+            passportDetailsDto.setUser(passport.getUser());
+            return passportDetailsDto;
+        } else {
+            throw new CustomException(404, "Passport not found with UserID: " + id);
+        }
     }
 }
