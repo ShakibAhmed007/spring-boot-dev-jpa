@@ -51,6 +51,7 @@ public class UserService {
             userDetailsDto.setUpdatedOn(user.getUpdatedOn());
             userDetailsDto.setStatus(user.getStatus());
             userDetailsDto.setPassport(user.getPassport());
+            userDetailsDto.setNid(user.getNid());
             return userDetailsDto;
         } else {
             throw new CustomException(404, "User not found with ID: "+ id);

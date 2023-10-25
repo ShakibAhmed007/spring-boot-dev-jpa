@@ -45,6 +45,11 @@ public class User {
     @PrimaryKeyJoinColumn
     private Passport passport;
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Nid nid;
+
     @PrePersist
     protected void onCreate(){
         this.createdOn = LocalDateTime.now();
