@@ -386,6 +386,145 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
 
+  - changeSet:
+      id: 11
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: course
+      changes:
+        - createTable:
+            tableName: course
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: course_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: title
+                  type: varchar(100)
+              - column:
+                  constraints:
+                    nullable: true
+                    unique: false
+                  name: description
+                  type: varchar(300)
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: author
+                  type: varchar(200)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+
+  - changeSet:
+      id: 12
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: review
+      changes:
+        - createTable:
+            tableName: review
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: review_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: true
+                    unique: false
+                  name: comment
+                  type: varchar(300)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: rating
+                  type: int
+              - column:
+                  name: course_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  constraints:
+                    nullable: false
+                  name: status
+                  type: int
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+
+  - changeSet:
+      id: 13
+      author: shakib
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: review
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: id
+            constraintName: FK_review_user
+            foreignKeyConstraintName: FK_review_user
+            onDelete: CASCADE
+            onUpdate: CASCADE
+
+  - changeSet:
+      id: 14
+      author: shakib
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: review
+            baseColumnNames: course_id
+            referencedTableName: course
+            referencedColumnNames: id
+            constraintName: FK_review_course
+            foreignKeyConstraintName: FK_review_course
+            onDelete: CASCADE
+            onUpdate: CASCADE
+
 
 
 

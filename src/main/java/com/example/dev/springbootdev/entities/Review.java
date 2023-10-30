@@ -11,33 +11,34 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+
 @Entity
-@Table(name = "nid")
+@Table(name = "review")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Nid {
-
+@AllArgsConstructor
+public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number")
-    @NotNull
-    private String number;
+    @Column(name = "comment")
+    private String comment;
 
-    @Column(name = "father_name")
+    @Column(name = "rating")
     @NotNull
-    private String fatherName;
+    private Integer rating;
 
-    @Column(name = "mother_name")
-    @NotNull
-    private String motherName;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "address")
-    @NotNull
-    private String address;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @Column(name = "status")
     @NotNull
@@ -50,11 +51,6 @@ public class Nid {
     @Column(name = "updated_on")
     @NotNull
     private LocalDateTime updatedOn;
-
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @PrePersist
     protected void onCreate(){

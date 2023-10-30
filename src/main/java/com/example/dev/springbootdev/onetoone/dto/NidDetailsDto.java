@@ -1,21 +1,23 @@
 package com.example.dev.springbootdev.onetoone.dto;
 
+import com.example.dev.springbootdev.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PassportDto {
+public class NidDetailsDto {
 
     private Long id;
     private String number;
-    private Long userId;
+    private String fatherName;
+    private String motherName;
+    private String address;
     private Integer status;
-
+    private User user;
 }

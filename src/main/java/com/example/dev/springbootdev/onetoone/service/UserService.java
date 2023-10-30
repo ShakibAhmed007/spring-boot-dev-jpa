@@ -17,9 +17,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+//    public List<User> getAllUser() {
+////        return userRepository.findAllByOrderByUpdatedOnDesc();
+//        return userRepository.findAll();
+//    }
+
     public List<User> getAllUser() {
-        return userRepository.findAllByOrderByUpdatedOnDesc();
+        return userRepository.findAll();
     }
+
 
     public User save(UserDto userDto) {
         User user = new User();

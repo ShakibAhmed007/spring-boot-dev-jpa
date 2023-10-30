@@ -10,34 +10,35 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "nid")
+@Table(name="course")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Nid {
+@AllArgsConstructor
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "number")
+    @Column(name = "title")
     @NotNull
-    private String number;
+    private String title;
 
-    @Column(name = "father_name")
-    @NotNull
-    private String fatherName;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "mother_name")
+    @Column(name = "author")
     @NotNull
-    private String motherName;
+    private String author;
 
-    @Column(name = "address")
-    @NotNull
-    private String address;
+    @JsonIgnore
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Review> reviewList = new ArrayList<Review>();
 
     @Column(name = "status")
     @NotNull
@@ -51,11 +52,6 @@ public class Nid {
     @NotNull
     private LocalDateTime updatedOn;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @PrePersist
     protected void onCreate(){
         this.createdOn = LocalDateTime.now();
@@ -66,5 +62,4 @@ public class Nid {
     protected void onUpdate(){
         this.updatedOn = LocalDateTime.now();
     }
-
 }
