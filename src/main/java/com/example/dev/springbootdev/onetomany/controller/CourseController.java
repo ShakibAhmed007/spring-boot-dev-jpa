@@ -30,7 +30,7 @@ public class CourseController {
     }
 
     @GetMapping("/getById/{id}")
-    public ResponseEntity<CustomResponse<CourseDetailsDto>> getById(@PathParam("id") Long id){
+    public ResponseEntity<CustomResponse<CourseDetailsDto>> getById(@PathVariable("id") Long id){
         CourseDetailsDto course = courseService.getById(id);
         CustomResponse<CourseDetailsDto> response = CustomResponseUtil.createResponse(200, course, "/GetAll");
         response.setMessage("Successful");
