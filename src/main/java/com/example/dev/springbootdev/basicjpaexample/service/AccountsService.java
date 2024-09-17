@@ -40,9 +40,19 @@ public class AccountsService {
     }
 
     public Page<Accounts> getAllByPagination(Integer pageNumber, Integer pageSize, String sortBy, Boolean isAscending){
-        Sort sort = Sort.by(sortBy).descending();
-        if(isAscending)
-            sort = Sort.by(sortBy).ascending();
+        Sort sort = Sort.unsorted();
+
+        if (sortBy != null && !sortBy.trim().isEmpty()) {
+            String[] sortFields = sortBy.split(",");
+            for (String field : sortFields) {
+                field = field.trim();
+                if (isAscending != null && isAscending) {
+                    sort = sort.and(Sort.by(Sort.Order.asc(field)));
+                } else {
+                    sort = sort.and(Sort.by(Sort.Order.desc(field)));
+                }
+            }
+        }
         Pageable pageable = PageRequest.of(pageNumber,pageSize, sort);
         return accountsRepository.findAll(pageable);
     }

@@ -16,7 +16,7 @@ public class StudentService {
         return studentRepository.findAllStudent();
     }
 
-    public Student save(Student student) {
-        return studentRepository.save(student);
+    public List<Student> findStudentsNotRegisteredInAnyCourse(){
+        return studentRepository.findStudentsNotRegisteredInAnyCourse();
     }
 }

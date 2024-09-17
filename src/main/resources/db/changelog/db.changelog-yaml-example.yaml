@@ -525,6 +525,67 @@ databaseChangeLog:
             onDelete: CASCADE
             onUpdate: CASCADE
 
+  - changeSet:
+      id: 15
+      author: shakib
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: course_registration
+      changes:
+        - createTable:
+            tableName: course_registration
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: course_registration_pkey
+                  name: id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                    unique: false
+                  name: student_id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                  name: course_id
+                  type: bigint
+              - column:
+                  constraints:
+                    nullable: false
+                  name: created_on
+                  type: timestamp
+              - column:
+                  constraints:
+                    nullable: false
+                  name: updated_on
+                  type: timestamp
+              - addForeignKeyConstraint:
+                  baseColumnNames: student_id
+                  baseTableName: course_registration
+                  referencedColumnNames: id
+                  referencedTableName: student
+                  constraintName: fk_student
+                  foreignKeyConstraintName: fk_student
+                  onDelete: CASCADE
+                  onUpdate: CASCADE
+              - addForeignKeyConstraint:
+                  baseColumnNames: course_id
+                  baseTableName: course_registration
+                  referencedColumnNames: id
+                  referencedTableName: course
+                  constraintName: fk_course
+                  foreignKeyConstraintName: fk_course
+                  onDelete: CASCADE
+                  onUpdate: CASCADE
+
+
 
 
 

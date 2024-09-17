@@ -1,12 +1,17 @@
 package com.example.dev.springbootdev.entities;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="student")
 public class Student implements Serializable {
@@ -30,4 +35,8 @@ public class Student implements Serializable {
     @Column(name = "age")
     @NotNull
     private Integer age;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<CourseRegistration> courseRegistrations;
 }

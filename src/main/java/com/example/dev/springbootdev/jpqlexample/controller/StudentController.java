@@ -20,12 +20,9 @@ public class StudentController {
         return studentService.getAll();
     }
 
-    @PostMapping("/save")
-    public Student save(@Valid @RequestBody Student student){
-        return studentService.save(student);
+    @GetMapping("/not-registered")
+    public List<Student> findStudentsNotRegisteredInAnyCourse() {
+        return studentService.findStudentsNotRegisteredInAnyCourse();
     }
-
-
-
 
 }

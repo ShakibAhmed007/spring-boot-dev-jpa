@@ -10,43 +10,26 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-@Table(name="course")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course implements Serializable {
+@Entity
+@Table(name="course_registration")
+public class CourseRegistration implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    @NotNull
-    private String title;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "author")
-    @NotNull
-    private String author;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Review> reviewList = new ArrayList<Review>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CourseRegistration> courseRegistrations;
-
-    @Column(name = "status")
-    @NotNull
-    private Integer status;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id", nullable = false)
+    private Course course;
 
     @Column(name = "created_on")
     @NotNull
